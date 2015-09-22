@@ -2,19 +2,26 @@ package c6.c1;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by fanhl on 15/9/22.
  */
-public class C6_1_1_Operators {
+public class C6_1_Create {
     public static void main(String[] args) {
 //        create();
 //        defer();
 //        empty();
 //        from();
-        interval();
+//        interval();
+//        just();
+//        range();
+//        repeat();
+//        doOnEach();
+//        timer();
+        test();
     }
 
     private static void create() {
@@ -109,8 +116,41 @@ public class C6_1_1_Operators {
 
     private static void interval() {
         //FIXME 不知道这是做啥的?
-        Observable.interval(1000, TimeUnit.MILLISECONDS).subscribe(aLong -> {
-            System.out.println("Interval: "+aLong);
+        Observable.just(1,2,3).timeInterval().subscribe(System.out::println);
+    }
+
+    private static void just() {
+        Observable.just(1, 2, 3).subscribe(System.out::println);
+    }
+
+    private static void range() {
+        Observable.range(1, 5).subscribe(System.out::println);
+    }
+
+    private static void repeat() {
+        Observable.just(1, 2, 3).repeat(3).subscribe(System.out::println);
+    }
+
+    private static void doOnEach() {
+        Observable.just(1, 2, 3).doOnEach(notification -> System.out.println("notification: " + notification)).subscribe(System.out::println);
+    }
+
+    private static void timer() {
+        //FIXME 好像这么写没有用
+        Observable.timer(5, TimeUnit.SECONDS).just(1, 2, 3).subscribe(System.out::println);
+    }
+
+    private static void test() {
+        Observable.just(1, 2, 3, 4, 5, 6).subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                System.out.println(integer);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 }

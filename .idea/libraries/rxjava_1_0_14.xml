@@ -4,6 +4,8 @@
       <root url="jar://$PROJECT_DIR$/libs/rxjava-1.0.14.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/rxjava-1.0.14-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
