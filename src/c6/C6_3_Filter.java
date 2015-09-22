@@ -1,4 +1,4 @@
-package c6.c1;
+package c6;
 
 import rx.Observable;
 import rx.Subscriber;
